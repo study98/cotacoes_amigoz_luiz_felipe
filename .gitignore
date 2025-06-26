@@ -1,0 +1,21 @@
+# Ambientes virtuais
+venv/
+.env
+
+# Arquivos pyc e cache
+__pycache__/
+*.py[cod]
+
+# VSCode (se estiver usando)
+.vscode/
+
+# Arquivos de log
+*.log
+
+# Arquivos temporários
+*.sqlite3
+*.db
+
+# Docker
+*.pid
+*.sock
