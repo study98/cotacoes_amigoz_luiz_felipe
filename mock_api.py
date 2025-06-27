@@ -10,9 +10,9 @@ class CotacaoMockHandler(BaseHTTPRequestHandler):
 
         if self.path == "/cotacao/dolar":
             data = {
-                "moeda": "dólar",
+                "moeda": "Dolar",
                 "sigla": "USD",
-                "valor": 5.80,
+                "valor": round(random.uniform(1.0, 10.0),2),
                 "momento_cotacao": now
             }
 
@@ -21,7 +21,7 @@ class CotacaoMockHandler(BaseHTTPRequestHandler):
             data = {
                 "moeda": "euro",
                 "sigla": "EUR",
-                "valor": 5.73,
+                "valor": round(random.uniform(1.0, 10.0),2),
                 "momento_cotacao": now
             }
 
