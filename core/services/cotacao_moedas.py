@@ -13,9 +13,9 @@ def get_cotacao_dolar() -> CotacaoModelo:
         data = response.json()
 
         return CotacaoModelo(
-            moeda_melhor_cotacao=data["moeda"],
-            sigla_moeda=data["sigla"],
-            valor_cotacao=float(data["valor"]),
+            moeda_melhor_cotacao=data["moeda_melhor_cotacao"],
+            sigla_moeda=data["sigla_moeda"],
+            valor_cotacao=float(data["valor_cotacao"]),
             momento_cotacao=datetime.fromisoformat(data["momento_cotacao"])
         )
 
@@ -33,9 +33,9 @@ async def get_cotacao_euro() -> CotacaoModelo:
             data = response.json()
 
             return CotacaoModelo(
-                moeda_melhor_cotacao=data["moeda"],
-                sigla_moeda=data["sigla"],
-                valor_cotacao=float(data["valor"]),
+                moeda_melhor_cotacao=data["moeda_melhor_cotacao"],
+                sigla_moeda=data["sigla_moeda"],
+                valor_cotacao=float(data["valor_cotacao"]),
                 momento_cotacao=datetime.fromisoformat(data["momento_cotacao"])
             )
     except (httpx.RequestError, httpx.HTTPStatusError, KeyError, ValueError) as e:

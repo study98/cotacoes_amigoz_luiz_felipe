@@ -10,18 +10,18 @@ class CotacaoMockHandler(BaseHTTPRequestHandler):
 
         if self.path == "/cotacao/dolar":
             data = {
-                "moeda": "Dolar",
-                "sigla": "USD",
-                "valor": round(random.uniform(1.0, 10.0),2),
+                "moeda_melhor_cotacao": "Dolar",
+                "sigla_moeda": "USD",
+                "valor_cotacao": round(random.uniform(1.0, 10.0),2),
                 "momento_cotacao": now
             }
 
         elif self.path == "/cotacao/euro":
             time.sleep(round(random.uniform(0.9, 4.9),2))  # Atraso de até 5 segundos para simular latência
             data = {
-                "moeda": "euro",
-                "sigla": "EUR",
-                "valor": round(random.uniform(1.0, 10.0),2),
+                "moeda_melhor_cotacao": "euro",
+                "sigla_moeda": "EUR",
+                "valor_cotacao": round(random.uniform(1.0, 10.0),2),
                 "momento_cotacao": now
             }
 

@@ -1,11 +1,10 @@
-from django.shortcuts import render
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema, OpenApiExample
-
 from core.serializers import CotacaoSerializer
 from core.aplicacao.calcular_melhor_cotacao import calcular_melhor_cotacao
+from django.shortcuts import render
+import asyncio
 
 class MelhorCotacaoView(APIView):
     @extend_schema(
@@ -26,7 +25,7 @@ class MelhorCotacaoView(APIView):
         ]
     )
     def get(self, request):
-        cotacao = calcular_melhor_cotacao()
+        cotacao = asyncio.run(calcular_melhor_cotacao()) 
 
         return Response({
             "moeda_melhor_cotacao": cotacao.moeda_melhor_cotacao,
