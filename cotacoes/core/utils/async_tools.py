@@ -1,5 +1,5 @@
 from typing import Callable, Awaitable, Union
-from core.dominio.modelo import CotacaoModelo
+from cotacoes.core.dominio.modelo import CotacaoModelo
 
 async def executar_com_seguranca(chamada: Callable[[], Awaitable]) -> Union[CotacaoModelo, Exception]:
     try:

@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
     # app Principal
-    'core',
+    'cotacoes.core',
     # padrao
     'django.contrib.admin',
     'django.contrib.auth',
@@ -69,7 +69,7 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',
 }
 
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'cotacoes.app.urls'
 
 TEMPLATES = [
     {
@@ -86,7 +86,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'cotacoes.app.wsgi.application'
 
 
 # Database

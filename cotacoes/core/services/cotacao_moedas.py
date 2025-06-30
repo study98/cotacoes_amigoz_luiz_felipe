@@ -1,7 +1,7 @@
 import httpx
 from datetime import datetime
 from django.conf import settings
-from core.dominio.modelo import CotacaoModelo
+from cotacoes.core.dominio.modelo import CotacaoModelo
 
 def get_cotacao_dolar() -> CotacaoModelo:
     url = f"{settings.API_COTACAO}/cotacao/dolar"

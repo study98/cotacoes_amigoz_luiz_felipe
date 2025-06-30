@@ -1,8 +1,8 @@
 import pytest
 from datetime import datetime
 from unittest.mock import AsyncMock, patch
-from core.dominio.modelo import CotacaoModelo
-from core.aplicacao.calcular_melhor_cotacao import calcular_melhor_cotacao
+from cotacoes.core.dominio.modelo import CotacaoModelo
+from cotacoes.core.aplicacao.calcular_melhor_cotacao import calcular_melhor_cotacao
 
 @pytest.mark.asyncio
 @patch("core.aplicacao.calcular_melhor_cotacao.get_cotacao_dolar")

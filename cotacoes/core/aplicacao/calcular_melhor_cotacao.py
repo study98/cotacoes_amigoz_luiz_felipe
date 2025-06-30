@@ -1,9 +1,9 @@
 import asyncio
-from core.dominio.modelo import CotacaoModelo
+from cotacoes.core.dominio.modelo import CotacaoModelo
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from core.services.cotacao_moedas import get_cotacao_dolar, get_cotacao_euro
-from core.utils.async_tools import executar_com_seguranca
+from cotacoes.core.services.cotacao_moedas import get_cotacao_dolar, get_cotacao_euro
+from cotacoes.core.utils.async_tools import executar_com_seguranca
 
 async def calcular_melhor_cotacao()-> CotacaoModelo:
 
