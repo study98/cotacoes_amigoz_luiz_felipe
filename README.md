@@ -1,5 +1,15 @@
-# Cotacoes Amigoz Luiz Felipe
-API para consultar a melhor cotação entre Dólar e Euro, utilizando Django REST Framework. Inclui um mock local para simulação das cotações enquanto a API oficial não estiver disponível.
+# 💱 Cotação - Amigoz (Desafio Técnico) – Luiz Felipe
+API REST em Django que consulta a melhor cotação entre Dólar e Euro. Desenvolvida com arquitetura baseada em DDD, uso de Docker, testes automatizados e documentação Swagger.
+
+## 🚀 Tecnologias Utilizadas
+
+- Python 3.13
+- Django 5.2
+- Django REST Framework
+- drf-spectacular (Swagger/OpenAPI)
+- Docker e Docker Compose
+- Poetry
+- Pytest
 
 ## Estrutura do Projeto
 
@@ -16,22 +26,26 @@ API para consultar a melhor cotação entre Dólar e Euro, utilizando Django RES
   - `poetry.lock`
   - `Dockerfile`
 
-  ## Requisitos
+## Requisitos
 
 - Python 3.13+
-- Poetry (para gerenciamento de dependências)
+- [Poetry](https://python-poetry.org/docs/#installation) (para gerenciamento de dependências)
 - Docker (opcional, para rodar via container)
 - para baixar a imagem docker: docker pull felipecunhadev/cotacoes_amigoz_luiz_felipe
+
+## ⚙️ Variáveis de Ambiente
+Crie um arquivo `.env` na raiz do projeto com:
+#API_COTACAO=http://localhost:3000 - para testes locais usando a imagem do desafio de cotações
+COTACAO_API_BASE=http://cotacao-service:3000
+DEBUG=True
+
+> O arquivo `.env` não está versionado, então deve ser criado manualmente.
+
 ## Configuração do Ambiente
 
 1. Clone o repositório.
 
-2. Crie um arquivo `.env` na raiz do projeto com as variáveis abaixo:
-API_COTACAO=http://host.docker.internal:3000 ou http://localhost:3000 (se for rodar local) 
-DEBUG=True
-
-
-> O arquivo `.env` não está versionado, então deve ser criado manualmente.
+2. Crie um arquivo `.env` na raiz do projeto:
 
 3. Instale as dependências com Poetry:
 
@@ -46,17 +60,23 @@ poetry install
 5. Rodando a aplicação 
     localmente:
         python manage.py runserver
-
+        api de consultas - docker run -p 3000:3000 --rm --name desafio-cotacoes mostela/desafiocotacoes
+   
     via Docker:
         docker run -p 8000:8000 felipecunhadev/cotacoes_amigoz_luiz_felipe
 
-6. API de Cotações
-    Como foi citado no inicio do documento, a imagem docker disponibilizada para o desafio não estava podendo ser localizada no docker, então criei um mock que simula API's de cotação. Para ativar a api mock localmente basta digitar:
-        python mock_api.py
+7. Endpoints principais
+   - GET /api/melhor-cotacao/ → Retorna a moeda com melhor cotação no momento
+   - GET /api/schema/ → Schema OpenAPI 3.0
+   - GET /api/docs/ → Interface Swagger para testes
 
-7. Testes
-    Os testes estão localizados em `cotacoes/core/tests/aplicacao/test_melhor_cotacao.py`.
-
-8. Considerações finais
-    Para verificação dos testes, deve ser alterado o '.env' para http://localhost:3000 e ativar o mock api
-
+8. Testes
+    Os testes estão localizados em `cotacoes/core/tests/aplicacao/aplicacao/test_melhor_cotacao.py` e `cotacoes/core/tests/aplicacao/integracao/test_api_cotacoes.py`.
+    para rodar todos os testes de uma vez: 'pytest cotacoes' - recomendasse que a imagem docker 'desafiocotacoes' esteja ligada
+   
+10. Considerações finais
+    - Imagem pública: docker pull felipecunhadev/cotacoes_amigoz_luiz_felipe
+    - Observações
+        - Arquitetura baseada em DDD: separação clara entre domínio, aplicação e infraestrutura.
+        - API documentada com Swagger via drf-spectacular.
+        - Mocks e testes organizados conforme boas práticas.
