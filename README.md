@@ -34,10 +34,10 @@ API REST em Django que consulta a melhor cotação entre Dólar e Euro. Desenvol
 - para baixar a imagem docker: docker pull felipecunhadev/cotacoes_amigoz_luiz_felipe
 
 ## ⚙️ Variáveis de Ambiente
-Crie um arquivo `.env` na raiz do projeto com:
-API_COTACAO=http://localhost:3000 - para testes locais usando a imagem do desafio de cotações
-API_COTACAO=http://cotacao-service:3000
-DEBUG=True
+  - Crie um arquivo `.env` na raiz do projeto com:
+    - API_COTACAO=http://localhost:3000 - para testes locais usando a imagem do desafio de cotações
+    - API_COTACAO=http://cotacao-service:3000
+    - DEBUG=True
 
 > O arquivo `.env` não está versionado, então deve ser criado manualmente.
 
