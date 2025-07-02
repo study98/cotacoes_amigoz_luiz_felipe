@@ -34,10 +34,10 @@ API REST em Django que consulta a melhor cotação entre Dólar e Euro. Desenvol
 - para baixar a imagem docker: docker pull felipecunhadev/cotacoes_amigoz_luiz_felipe
 
 ## ⚙️ Variáveis de Ambiente
-Crie um arquivo `.env` na raiz do projeto com:
-API_COTACAO=http://localhost:3000 - para testes locais usando a imagem do desafio de cotações
-API_COTACAO=http://cotacao-service:3000
-DEBUG=True
+  - Crie um arquivo `.env` na raiz do projeto com:
+    - API_COTACAO=http://localhost:3000 - para testes locais usando a imagem do desafio de cotações
+    - API_COTACAO=http://cotacao-service:3000
+    - DEBUG=True
 
 > O arquivo `.env` não está versionado, então deve ser criado manualmente.
 
@@ -55,13 +55,21 @@ DEBUG=True
     - No Linux/macOS Bash:
         source ./activate_venv.sh
 
-5. Rodando a aplicação 
-    localmente:
-     - python manage.py runserver
+5. Rodando a aplicação:
+   - localmente:
+     - alterar o '.env' no campo 'API_COTACAO' para 'http://localhost:3000'
+     - ativar a venv
+     - rodar o projeto com: python manage.py runserver
      - api de consultas - docker run -p 3000:3000 --rm --name desafio-cotacoes mostela/desafiocotacoes
        
-     - via Docker:docker run -p 8000:8000 felipecunhadev/cotacoes_amigoz_luiz_felipe
+   - via Docker:
+     - baixe a Imagem pública: docker pull felipecunhadev/cotacoes_amigoz_luiz_felipe
+     - rodar a api de consultas - docker run -p 3000:3000 --rm --name desafio-cotacoes mostela/desafiocotacoes
+     - acessar a pasta raiz do desafio
+     - rodar o comando: docker run -p 8000:8000 --env-file .env felipecunhadev/cotacoes_amigoz_luiz_felipe
 
+  
+  
 7. Endpoints principais
    - GET /api/melhor-cotacao/ → Retorna a moeda com melhor cotação no momento
    - GET /api/schema/ → Schema OpenAPI 3.0
