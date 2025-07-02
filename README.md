@@ -59,9 +59,8 @@ DEBUG=True
     localmente:
      - python manage.py runserver
      - api de consultas - docker run -p 3000:3000 --rm --name desafio-cotacoes mostela/desafiocotacoes
-   
-    via Docker:
-        docker run -p 8000:8000 felipecunhadev/cotacoes_amigoz_luiz_felipe
+       
+     - via Docker:docker run -p 8000:8000 felipecunhadev/cotacoes_amigoz_luiz_felipe
 
 7. Endpoints principais
    - GET /api/melhor-cotacao/ → Retorna a moeda com melhor cotação no momento
@@ -69,8 +68,8 @@ DEBUG=True
    - GET /api/docs/ → Interface Swagger para testes
 
 8. Testes
-    Os testes estão localizados em `cotacoes/core/tests/aplicacao/aplicacao/test_melhor_cotacao.py` e `cotacoes/core/tests/aplicacao/integracao/test_api_cotacoes.py`.
-    para rodar todos os testes de uma vez: 'pytest cotacoes' - recomendasse que a imagem docker 'desafiocotacoes' esteja ligada
+  - Os testes estão localizados em `cotacoes/core/tests/aplicacao/aplicacao/test_melhor_cotacao.py` e `cotacoes/core/tests/aplicacao/integracao/test_api_cotacoes.py`.
+  - para rodar todos os testes de uma vez: 'pytest cotacoes' - recomendasse que a imagem docker 'desafiocotacoes' esteja ligada
    
 10. Considerações finais
     - Imagem pública: docker pull felipecunhadev/cotacoes_amigoz_luiz_felipe
