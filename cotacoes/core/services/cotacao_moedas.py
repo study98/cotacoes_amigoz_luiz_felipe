@@ -26,7 +26,7 @@ async def get_cotacao_euro() -> CotacaoModelo:
 
     try:
         async with httpx.AsyncClient() as client:
-            response = await client.get(url, timeout=6.0)
+            response = await client.get(url, timeout=4.9)
             response.raise_for_status()
 
             data = response.json()

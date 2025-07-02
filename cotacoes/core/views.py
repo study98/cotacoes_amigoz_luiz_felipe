@@ -1,10 +1,17 @@
+import time
+import asyncio
+import logging
+from django.shortcuts import render
+from asgiref.sync import sync_to_async
+from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from drf_spectacular.utils import extend_schema, OpenApiExample
 from cotacoes.core.serializers import CotacaoSerializer
+from drf_spectacular.utils import extend_schema, OpenApiExample
 from cotacoes.core.aplicacao.calcular_melhor_cotacao import calcular_melhor_cotacao
-from django.shortcuts import render
-import asyncio
+
+
+logg = logging.getLogger(__name__)
 
 class MelhorCotacaoView(APIView):
     @extend_schema(
@@ -25,11 +32,20 @@ class MelhorCotacaoView(APIView):
         ]
     )
     def get(self, request):
-        cotacao = asyncio.run(calcular_melhor_cotacao()) 
+        try:
+            logg.info("-> Iniciada a requisição: /api/melhor-cotacao/")
+            inicio = time.perf_counter()
+            cotacao = asyncio.run(calcular_melhor_cotacao()) 
+            fim = time.perf_counter()
+            tempo_execucao = fim-inicio
+            logg.info(f"-> Melhor Cotação: {cotacao.moeda_melhor_cotacao} - {cotacao.valor_cotacao}")
+            logg.info(f"-> Tempo de processamento: {tempo_execucao:.2f} segundos")
 
-        return Response({
-            "moeda_melhor_cotacao": cotacao.moeda_melhor_cotacao,
-            "sigla_moeda": cotacao.sigla_moeda,
-            "valor_cotacao": cotacao.valor_cotacao,
-            "momento_cotacao": cotacao.momento_cotacao.isoformat()
-        })
+            return Response({
+                "moeda_melhor_cotacao": cotacao.moeda_melhor_cotacao,
+                "sigla_moeda": cotacao.sigla_moeda,
+                "valor_cotacao": cotacao.valor_cotacao,
+                "momento_cotacao": cotacao.momento_cotacao.isoformat()
+            })
+        except RuntimeError as e:
+            return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
