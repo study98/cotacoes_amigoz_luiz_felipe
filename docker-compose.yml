@@ -1,24 +1,22 @@
 version: "3.9"
 
 services:
-  cotacoes-api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: cotacoes-api-luiz-cunha
-    ports:
-      - "8000:8000"
-    depends_on:
-      - cotacao-service
-    env_file:
-      - .env
-    environment:
-      - COTACAO_API_BASE=http://cotacao-service:3000
-    volumes:
-      - .:/app
-
   cotacao-service:
     image: mostela/desafiocotacoes
     container_name: cotacao-service
     ports:
       - "3000:3000"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cotacoes_amigoz_luiz_felipe
+    ports:
+      - "8000:8000"
+    depends_on:
+      - cotacao-service
+    environment:
+      - COTACAO_API_BASE=http://cotacao-service:3000
+
+  
