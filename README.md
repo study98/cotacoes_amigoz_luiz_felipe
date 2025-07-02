@@ -63,6 +63,7 @@ API REST em Django que consulta a melhor cotação entre Dólar e Euro. Desenvol
      - api de consultas - docker run -p 3000:3000 --rm --name desafio-cotacoes mostela/desafiocotacoes
        
    - via Docker:
+     - baixe a Imagem pública: docker pull felipecunhadev/cotacoes_amigoz_luiz_felipe
      - rodar a api de consultas - docker run -p 3000:3000 --rm --name desafio-cotacoes mostela/desafiocotacoes
      - acessar a pasta raiz do desafio
      - rodar o comando: docker run -p 8000:8000 --env-file .env felipecunhadev/cotacoes_amigoz_luiz_felipe
