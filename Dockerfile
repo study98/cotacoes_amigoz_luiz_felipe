@@ -1,11 +1,11 @@
-# Etapa 1: Imagem base com Python/Django
+# Imagem base com Python/Django
 FROM python:3.13-slim AS base
 
-# Etapa 2: Variáveis de ambiente para o Python não gerar arquivos '.pyc' e logs interativos
+# Variáveis de ambiente para o Python não gerar arquivos desnecessários e logs interativos
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Etapa 3: Instalações básicas (build essentials, curl para baixar o Poetry)
+# Instalações básicas (build essentials, curl para baixar o Poetry)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     curl \
@@ -28,13 +28,13 @@ COPY pyproject.toml poetry.lock* /app/
 RUN poetry config virtualenvs.create false \
  && poetry install --no-interaction --no-ansi --no-root
 
-# Etapa 8: Copiar o restante do código-fonte
+# Copiar o restante do código-fonte
 COPY . /app
 
 ENV DJANGO_SETTINGS_MODULE=cotacoes.app.settings
 
-# Etapa 9: Expor a porta 8000 (onde o Django vai rodar)
+# Expor a porta 8000 (onde o Django vai rodar)
 EXPOSE 8000
 
-# Etapa 10: Comando padrão para rodar o servidor
+# Comando  para rodar o servidor
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
