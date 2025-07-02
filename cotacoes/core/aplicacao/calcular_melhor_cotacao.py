@@ -17,5 +17,7 @@ async def calcular_melhor_cotacao()-> CotacaoModelo:
     ]
     if not cotacoes:
         raise RuntimeError("Nenhuma cotação válida foi retornada.")
-    
+    if len(cotacoes)==1:
+        return cotacoes[0]
+
     return min(cotacoes, key=lambda cotacao: cotacao.valor_cotacao)

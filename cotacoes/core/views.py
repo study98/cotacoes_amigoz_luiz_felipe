@@ -15,7 +15,7 @@ class MelhorCotacaoView(APIView):
             OpenApiExample(
                 "Exemplo de resposta",
                 value={
-                    "moeda": "Dolar",
+                    "moeda": "dollar",
                     "sigla": "USD",
                     "valor": 5.73,
                     "momento_cotacao": "2025-06-25T22:35:00-03:00"

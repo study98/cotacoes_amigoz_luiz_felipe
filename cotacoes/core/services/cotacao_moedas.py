@@ -13,10 +13,9 @@ def get_cotacao_dolar() -> CotacaoModelo:
         data = response.json()
 
         return CotacaoModelo(
-            moeda_melhor_cotacao=data["moeda_melhor_cotacao"],
-            sigla_moeda=data["sigla_moeda"],
-            valor_cotacao=float(data["valor_cotacao"]),
-            momento_cotacao=datetime.fromisoformat(data["momento_cotacao"])
+            moeda_melhor_cotacao=data["currency_name"],
+            sigla_moeda=data["currency_kind"],
+            valor_cotacao=float(data["currency_price"]/100),
         )
 
     except (httpx.RequestError, httpx.HTTPStatusError, KeyError, ValueError) as e:
@@ -33,10 +32,9 @@ async def get_cotacao_euro() -> CotacaoModelo:
             data = response.json()
 
             return CotacaoModelo(
-                moeda_melhor_cotacao=data["moeda_melhor_cotacao"],
-                sigla_moeda=data["sigla_moeda"],
-                valor_cotacao=float(data["valor_cotacao"]),
-                momento_cotacao=datetime.fromisoformat(data["momento_cotacao"])
+                moeda_melhor_cotacao=data["cotacao"]['moeda'],
+                sigla_moeda=data["cotacao"]["sigla"],
+                valor_cotacao=float(data["cotacao"]["valor_comercial"]),
             )
     except (httpx.RequestError, httpx.HTTPStatusError, KeyError, ValueError) as e:
         raise RuntimeError(f"Erro ao consultar cotação do Euro: {e}")
